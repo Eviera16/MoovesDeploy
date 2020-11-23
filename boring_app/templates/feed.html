@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <!-- <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'JavaScript/feed.js' %}"></script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>Mooves</h1>
+        </div>
+        <div id="sidebar">
+            <a class="sideLinks" href="/feed">Home</a>
+            <a class="sideLinks" href="/profile">Profile</a>
+            <a class="sideLinks" href="/events">Events</a>
+            <a class="sideLinks" href="/settings">Settings</a>
+            <a class="logout" href="/logout">Logout</a>
+
+        </div>
+        <div id="friends">
+            <h3 class="active">Friends</h3>
+            <ul class="friendList">
+                {% for friend in friends %}
+                <li class="listF"><a class="friendLink" href="/profile/{{friend.id}}">@{{friend.user_name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mn2" id="main">
+            <h1 class="home">Home</h1>
+            <div class="add">
+                <h2>Moo</h2>
+                <form class="smallMoo" action="add1" method="post">
+                    {% csrf_token %}
+                    <textarea name="text" class="text"></textarea>
+                    <div class="pub">
+                        <label for="public" name="Public">Public?</label>
+                        <label name="yes">Yes</label>
+                        <input type="radio" name="public" value="True">
+                        <label name="no">No</label>
+                        <input type="radio" name="public" value="False">
+                    </div>
+                    <button class="moo" type="submit">Moo</button>
+                </form>
+            </div>
+            {% for post in posts %}
+            {% if post.poster in friends or post in userPost %}
+            {% if post.public == False %}
+            <div class="feedStream">
+                <div class="User">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="user">
+                        <a class="link" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
+                    </div>
+                    <div class="hiddenStuff"><input type="hidden" name="postId" value="{{post.id}}"></div>
+                </div>
+                <div class="posts">
+                    <p>{{post.info}}</p>
+                </div>
+                <div class="ReplyStream">
+                {% for reply in post.replies.all %}
+                    <div class="reply">
+                        <div class="User">
+                            <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                            <div class="user">
+                                <a class="link" href="/profile/{{reply.poster.id}}">@{{reply.poster.user_name}}</a>
+                            </div>
+                        </div>
+                        <div class="posts">
+                            <p>{{reply.info}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if post not in userPost %}
+                <div class="postActions">
+                    <form action="/like/{{post.id}}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="cowBell"><img class="cBell" alt="cowbell"
+                                src="{% static 'img/cowBell1.img' %}"></button>
+                    </form>
+                    <p class="numMooz">{{post.numMooz}}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <div class="extra"></div>
+        </div>
+
+        <div id="main2">
+            <div class="threadTop">
+                <h1 class="thread">Thread</h1>
+                <h2 class="exit">X</h2>
+            </div>
+            <div class="upperRe">
+                <div class="UserRe">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="userRe">
+                    </div>
+                </div>
+                <div class="postsRe">
+                </div>
+            </div>
+            <div class="replySec">
+                <form class="MooBack" action="reply" method="post">
+                    {% csrf_token %}
+                    <textarea name="text" class="textBack" placeholder="Moo Back"></textarea>
+                    <button class="mooBack" type="submit">MooBack</button>
+                    <div class="hidehere"></div>
+                </form>
+                <div class="replyFeedStream">
+
+                </div>
+
+            </div>
+
+        </div>
+        <div id="Events">
+            <h1 class="eventHeader">Events</h1>
+            {% for post in posts %}
+            {% if post not in userPost %}
+            {% if post.public == True %}
+            <div id="feedStream1">
+                <div class="User">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="user1">
+                        <a class="link1" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
+                    </div>
+                </div>
+                <div class="posts1">
+                    <p class="post2">{{post.info}}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% if post.public == False %}
+            {% if post.poster in user.friend.all %}
+            <div id="feedStream2">
+                <div class="User">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="user2">
+                        <a class="link2" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
+                    </div>
+                </div>
+                <div class="posts2">
+                    <p class="post1">{{post.info}}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <!-- <div id="footer">
+            <a class="home" href="/feed">Home</a>
+            <button class="slide" type="button">Search</button>
+            <button class="slide" type="button">Moo'z</button>
+            <a class="logout" href="/logout">Logout</a>
+        </div> -->
+    </div>
+
+</body>
+
+</html>

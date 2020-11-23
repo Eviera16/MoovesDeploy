@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/settings/settings.css' %}">
+
+    </head>
+    <body>
+        <div id="sidebar">
+            <a class="sideLinks" href="/feed">Home</a>
+            <a class="sideLinks" href="/profile">Profile</a>
+            <a class="sideLinks" href="/events">Events</a>
+            <a class="sideLinks" href="/settings">Settings</a>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+        <div id="options">
+            <h1 class="setHead">Settings</h1>
+            <h2 class="editAcc"><a href="/settings"> Your Account</a></h2>
+        </div>
+        <div id="accountInfo">
+            <h1 class="setHead1">Your Account</h1>
+            <h2 class="viewAcc"><a href="/viewAcc" >View Account Information</a></h2>
+            <h2 class="viewAcc"><a href="/editPass"> Edit Password</a></h2>
+            <h2 class="viewAcc">Edit Account</h2>
+
+        </div>
+    </body>
+</html>

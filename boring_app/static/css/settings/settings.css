@@ -1,0 +1,94 @@
+body{
+    display: flex;
+    padding: 0px;
+}
+
+#sidebar{
+    height: 570px;
+    width: 170px;
+    border: 2px solid brown;
+    margin-top: -8px;
+    margin-left: -8px;
+    position: fixed;
+    background-color: black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+.sideLinks{
+    height: 50px;
+    width: 170px;
+    border: 1px solid brown;
+    color: brown;
+    text-align: center;
+    padding-top: 30px;
+    text-decoration: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+}
+
+#options{
+    display: flex;
+    flex-direction: column;
+    height: 565px;
+    width: 445px;
+    border: 1px solid black;
+    margin-left: 166px;
+    margin-top: -8px;
+}
+
+.setHead{
+    height: 50px;
+    width: 445px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-top: -5px;
+}
+
+.setHead1{
+    height: 50px;
+    width: 651px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-top: -5px;
+}
+
+.editAcc{
+    height: 50px;
+    width: 445px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-top: -5px;
+}
+
+.viewAcc{
+    height: 50px;
+    width: 651px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    margin-top: -5px;
+}
+
+#accountInfo{
+    height: 565px;
+    width: 700px;
+    border: 1px solid black;
+    margin-top: -8px;
+}
+
+.logout{
+    text-decoration: none;
+    border: 1px solid brown;
+    background-color: black;
+    height: 20px;
+    width: 170px;
+    border-radius: 20px;
+    text-align: center;
+    color: brown;
+}

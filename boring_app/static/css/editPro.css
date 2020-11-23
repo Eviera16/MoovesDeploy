@@ -1,0 +1,91 @@
+#sidebar{
+    height: 570px;
+    width: 170px;
+    border: 2px solid brown;
+    margin-top: -8px;
+    margin-left: -8px;
+    position: fixed;
+    background-color: black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+.sideLinks{
+    height: 50px;
+    width: 170px;
+    border: 1px solid brown;
+    color: brown;
+    text-align: center;
+    padding-top: 30px;
+    text-decoration: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+}
+.logout{
+    text-decoration: none;
+    border: 1px solid brown;
+    background-color: black;
+    height: 20px;
+    width: 170px;
+    border-radius: 20px;
+    text-align: center;
+    color: brown;
+}
+#header{
+    margin-top: 5px;
+    margin-left: 165px;
+    height: fit-content;
+    width: 600px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    border-right: .5px solid black;
+}
+.headerH2{
+    height: 50px;
+    width: 595px;
+    border-bottom: 1px solid black;
+    margin-top: -2px;
+    padding-left: 5px;
+}
+.backGround{
+    margin-top: -20px;
+    height: 175px;
+    width: 600px;
+    background-color: blue;
+}
+.others{
+    height: 50px;
+    width: 600px;
+    display: flex;
+}
+.proImage{
+    z-index: 2;
+    margin-left: -100px;
+}
+.self{
+    display: flex;
+    flex-direction: column;
+    margin-right: 230px;
+    height: fit-content;
+    width: 300px;
+}
+.desc{
+    border-bottom: 1px solid black;
+    width: 200px;
+}
+.descArea{
+    border-bottom: 1px solid black;
+    width: 200px;
+    height: 70px;
+}
+.profile{
+    height: 100px;
+    width: 100px;
+    border-radius: 60px;
+    z-index: 2;
+    margin-top: -50px;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/settings/viewAcc.css' %}">
+
+    </head>
+    <body>
+        <div id="sidebar">
+            <a class="sideLinks" href="/feed">Home</a>
+            <a class="sideLinks" href="/profile">Profile</a>
+            <a class="sideLinks" href="/events">Events</a>
+            <a class="sideLinks" href="/settings">Settings</a>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+        <div id="options">
+            <h1 class="setHead">Settings</h1>
+            <h2 class="editAcc"><a href="/settings"> Edit Account</a></h2>
+        </div>
+        <div id="accountInfo">
+            <h1 class="setHead1">Account</h1>
+
+            <ul>
+                <li><h2>First Name: {{user.first_name}}</h2></li>
+                <li><h2>Last Name: {{user.last_name}}</h2></li>
+                <li><h2>Email: {{user.email}}</h2></li>
+                <li><h2>User Name: {{user.user_name}}</h2></li>
+                <!-- <li><h2>{{user.first_name}}</h2></li> -->
+
+            </ul>
+
+        </div>
+    </body>
+</html>

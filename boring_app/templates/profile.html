@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'JavaScript/profile.js' %}"></script>
+
+</head>
+
+<body>
+    <div id="sidebar">
+        <a class="sideLinks" href="/feed">Home</a>
+        <a class="sideLinks" href="/profile">Profile</a>
+        <a class="sideLinks" href="/events">Events</a>
+        <a class="sideLinks" href="/settings">Settings</a>
+        <a class="logout" href="/logout">Logout</a>
+    </div>
+    <div id="proMain">
+        <div id="header">
+            <h2 class="headerH2">{{user.first_name}} {{user.last_name}}</h2>
+            <div class="backGround"></div>
+            <div class="others">
+                {% if user.proImage %}
+                <img class="profile" src="{{user.proImage.url}}" alt="ProImageHere">
+                {% else %}
+                <img class="profile" src="{% static 'img/cowPro.png' %}">
+                {% endif %}
+                {% if cUser.id == user.id%}
+                <form action="editPro" method="post">
+                    {% csrf_token %}
+                    <button class="editPro" type="submit">Edit Profile</button>
+                </form>
+                {% endif %}
+
+                {% if cUser.id != user.id %}
+                {% if user not in friends %}
+                <div class="space">
+                    <form action="/follow/{{cUser.id}}/{{user.id}}" method="post">
+                        {% csrf_token %}
+                        <button class="follow" type="submit">Follow</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% if user in friends %}
+                <div class="space2">
+                    <h3 class="following">Following</h3>
+                    <form class="unform" action="/unfollow/{{cUser.id}}/{{user.id}}" method="post">
+                        {% csrf_token %}
+                        <button class="unfollow" type="submit">Unfollow</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+            <div class="self">
+                <p class="desc">{{user.first_name}} {{user.last_name}}</p>
+                <p class="desc">@{{user.user_name}}</p>
+                <p class="desc">{{user.desc}}</p>
+                <p>Friends: {{numFriends}} </p>
+                <p>Joined: {{user.created_at}}</p>
+            </div>
+
+        </div>
+        <div id="feed">
+            <div class="headFeed">
+                Your Status Feed
+            </div>
+            {% for post in posts %}
+            <div class="postData">
+                <div class="first">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="user">
+                        <a class="link" href="/profile/{{user.id}}">@{{user.user_name}}</a>
+                    </div>
+                    <div class="hiddenStuff"><input type="hidden" name="postId" value="{{post.id}}"></div>
+                </div>
+                <div class="posts">
+                    <p>{{ post.info }}</p>
+                </div>
+                <div class="ReplyStream">
+                    {% for reply in post.replies.all %}
+                    <div class="reply">
+                        <div class="User">
+                            <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                            <div class="user">
+                                <a class="link" href="/profile/{{reply.poster.id}}">@{{reply.poster.user_name}}</a>
+                            </div>
+                        </div>
+                        <div class="posts">
+                            <p>{{reply.info}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="extra"></div>
+        </div>
+        <div id="main2">
+            <div class="threadTop">
+                <h1 class="thread">Thread</h1>
+                <h2 class="exit">X</h2>
+            </div>
+            <div class="User">
+                <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                <div class="userRe">
+                </div>
+            </div>
+            <div class="postsRe">
+            </div>
+            <div class="replySec">
+                <form class="smallMoo" action="reply" method="post">
+                    {% csrf_token %}
+                    <textarea name="text" class="text" placeholder="Moo Back"></textarea>
+                    <button class="mooBack" type="submit">MooBack</button>
+                    <div class="hidehere"></div>
+                </form>
+                <div class="replyFeedStream">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="rightSideBar">
+        {% if cUser.id == user.id %}
+        <div class="newFriends">
+            <h1 class="newFrTitle">You may also Like</h1>
+            {% for user in someUsers %}
+            <div class="notFriend">
+                <div class="nFleft">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="nFNames">
+                        <h4 class="nFinfo">{{ user.firstName }} {{ user.lastName }}</h5>
+                            <h5 class="nFinfo">@{{ user.userName }}
+                        </h4>
+                    </div>
+                </div>
+                <form class="nFright" action="/follow/{{cUser.id}}/{{user.id}}" method="post">
+                    {% csrf_token %}
+                    <button class="follow" type="submit">Follow</button>
+                </form>
+            </div>
+            {% endfor %}
+            <h1 class="showMore">Show more!</h1>
+        </div>
+        {% endif %}
+        <div class="events">
+            <h1 class="whatHappen">What's Happening</h1>
+            {% for post in somePosts %}
+            <div class="eventPosts">
+                <div class="evTop">
+                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <div class="evNames">
+                        <h4 class="nFinfo">{{ post.poster.first_name }} {{ post.poster.last_name }}</h4>
+                        <h5 class="nFinfo">@{{ post.poster.user_name }}</h5>
+                    </div>
+                </div>
+                <div class="eventInfo">
+                    {{ post.info }}
+                </div>
+            </div>
+            {% endfor %}
+            <h1 class="showMore">Show more!</h1>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- 
+{% if cUser.id == user.id %}
+        <button class="write" type="button">Moo</button>
+        <div class="add">
+            <h2>Send A Moo</h2>
+            <form class="smallMoo" action="add" method="post">
+                {% csrf_token %}
+                <textarea name="text" class="text"></textarea>
+                <button class="moo" type="submit">Moo</button>
+            </form>
+        </div>
+        {% endif %} -->

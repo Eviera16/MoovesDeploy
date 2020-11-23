@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/settings/newPass.css' %}">
+
+    </head>
+    <body>
+        <div id="sidebar">
+            <a class="sideLinks" href="/feed">Home</a>
+            <a class="sideLinks" href="/profile">Profile</a>
+            <a class="sideLinks" href="/events">Events</a>
+            <a class="sideLinks" href="/settings">Settings</a>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+        <div id="options">
+            <h1 class="setHead">Settings</h1>
+            <h2 class="editAcc"><a href="/settings"> Edit Account</a></h2>
+        </div>
+        <div id="accountInfo">
+            <h1 class="setHead1">New Password</h1>
+            <form action="/updatePass" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{user.user_name}}" name="user_name">
+
+                <label>New Password</label>
+                <input type="password" name="password">
+
+                <label>Confirm New Password</label>
+                <input type="password" name="confirm">
+
+                <input type="submit" value="submit">
+            </form>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+
+        </div>
+    </body>
+</html>
