@@ -1,0 +1,28 @@
+<h1>Hello, world!</h1>
+<div>
+
+    <form action="updatePro" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if obj %}
+    <h3>Succesfully uploaded : {{img_obj.caption}}</h3>
+    <img src="{{ obj.image.url}}" alt="image">
+    
+    {% endif %}
+    <hr>
+
+
+    {% for x in img %}
+    <div>
+        <img src="{{x.image.url}}" height="70%" width="70%" alt="...">
+        <h2>{{x.caption}}</h2>
+    </div>
+
+    {% endfor %}
+
+</div>

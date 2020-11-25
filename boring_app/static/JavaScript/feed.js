@@ -5,7 +5,7 @@ $(document).ready(function () {
     $(".feedStream").click(function () {
         $("#main").hide();
         $("#main2").show();
-        var innerName = $(this).find(".user").html();
+        var innerName = $(this).find(".User").html();
         var innerPost = $(this).find(".posts").html();
         var innerId = $(this).find(".hiddenStuff").html();
         var replies = $(this).find(".ReplyStream").html();

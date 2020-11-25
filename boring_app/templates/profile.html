@@ -22,16 +22,15 @@
             <h2 class="headerH2">{{user.first_name}} {{user.last_name}}</h2>
             <div class="backGround"></div>
             <div class="others">
-                {% if user.proImage %}
-                <img class="profile" src="{{user.proImage.url}}" alt="ProImageHere">
-                {% else %}
+                {% if obj %}
+                <img class="profile" src="{{ obj.image.url}}" alt="image">
+                {% elif CUproPic == 3 %}
                 <img class="profile" src="{% static 'img/cowPro.png' %}">
+                {% else %}
+                <img class="profile" src="{{ CUproPic.image.url }}" alt="image">
                 {% endif %}
                 {% if cUser.id == user.id%}
-                <form action="editPro" method="post">
-                    {% csrf_token %}
-                    <button class="editPro" type="submit">Edit Profile</button>
-                </form>
+                <a href="/updatePro">Update Profile</a>
                 {% endif %}
 
                 {% if cUser.id != user.id %}
@@ -69,13 +68,17 @@
             </div>
             {% for post in posts %}
             <div class="postData">
-                <div class="first">
+                <div class="user">
+                    {% if obj %}
+                    <img class="smallPro" src="{{ obj.image.url}}" alt="image">
+                    {% elif CUproPic == 3 %}
                     <img class="smallPro" src="{% static 'img/cowPro.png' %}">
-                    <div class="user">
-                        <a class="link" href="/profile/{{user.id}}">@{{user.user_name}}</a>
-                    </div>
-                    <div class="hiddenStuff"><input type="hidden" name="postId" value="{{post.id}}"></div>
+                    {% else %}
+                    <img class="smallPro" src="{{ CUproPic.image.url }}" alt="image">
+                    {% endif %}
+                    <a class="link" href="/profile/{{user.id}}">@{{user.user_name}}</a>
                 </div>
+                <div class="hiddenStuff"><input type="hidden" name="postId" value="{{post.id}}"></div>
                 <div class="posts">
                     <p>{{ post.info }}</p>
                 </div>
@@ -83,7 +86,23 @@
                     {% for reply in post.replies.all %}
                     <div class="reply">
                         <div class="User">
-                            <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                            {% if reply.poster.proPicId %}
+                            {% for pic in proImages %}
+                            {% if reply.poster.proPicId == pic.id %}
+                            <img class="smallPro" src="{{ pic.image.url }}">
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% if 5 > reply.poster.user_name|length %}
+                            <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                            {% elif 10 > reply.poster.user_name|length %}
+                            <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                            {% elif 15 > reply.poster.user_name|length %}
+                            <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                            {% elif reply.poster.user_name|length > 20 %}
+                            <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                            {% endif %}
+                            {% endif %}
                             <div class="user">
                                 <a class="link" href="/profile/{{reply.poster.id}}">@{{reply.poster.user_name}}</a>
                             </div>
@@ -104,7 +123,7 @@
                 <h2 class="exit">X</h2>
             </div>
             <div class="User">
-                <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                <!-- <img class="smallPro" src="{% static 'img/cowPro.png' %}"> -->
                 <div class="userRe">
                 </div>
             </div>
@@ -182,3 +201,6 @@
             </form>
         </div>
         {% endif %} -->
+
+
+<!-- <img class="profile" src="{{user.proImage.url}}" alt="ProImageHere"> -->

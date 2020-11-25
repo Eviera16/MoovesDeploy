@@ -119,6 +119,9 @@ p{
     background-color: white;
     border-bottom: 2px solid brown;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .postData:hover{
     background-color: lightgrey;
@@ -206,6 +209,9 @@ p{
     background-color: white;
     font-size: 30px;
 }
+.posts{
+    margin-top: 20px;
+}
 
 .User{
     /* border: 1px solid black; */
@@ -225,7 +231,9 @@ p{
     background-color: transparent;
     display: flex;
     justify-content: center;
-    margin-left: -5px;
+    align-items: flex-start;
+    margin-left: 30px;
+    margin-bottom: 20px;
 }
 .link{
     color: brown;

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import User, Status, Reply
+from .models import *
+from .form import ImageForm
 from django.contrib import messages
 import bcrypt
-
 
 def index(request):
     return render(request, "index.html")
@@ -37,13 +37,18 @@ def feed(request):
         return redirect('/')
 
     postss = Status.objects.all().order_by('-id')
+    proImages = ProImage.objects.all()
+    uUser = User.objects.get(id=1)
+
+    print("proImages here: ", proImages)
 
     print("posts here: ", postss)
     context = {
         "user" : User.objects.get(id=request.session['loginID']),
         "posts" : postss,
         "userPost" : User.objects.get(id=request.session['loginID']).post.all(),
-        "friends" : User.objects.get(id=request.session['loginID']).friend.all()
+        "friends" : User.objects.get(id=request.session['loginID']).friend.all(),
+        "proImages" : proImages
     }
 
     return render(request, "feed.html", context)
@@ -58,6 +63,14 @@ def profile(request):
     all_post = currentUser.post.all().order_by('-id')
     All_Posts = Status.objects.all().order_by('-id')
     all_users = User.objects.all()
+    picId = currentUser.proPicId
+    proImages = ProImage.objects.all()
+    if picId:
+        print("in here")
+        CUproPic = ProImage.objects.get(id=picId)
+    else:
+        print("no in here")
+        CUproPic = 3
     some_users = []
     some_posts = []
     count = 0
@@ -86,7 +99,9 @@ def profile(request):
         "numFriends": numFriends,
         "allUsers" : all_users,
         "someUsers" : some_users,
-        "somePosts" : some_posts
+        "somePosts" : some_posts,
+        "CUproPic" : CUproPic,
+        "proImages" : proImages
     }
     return render(request, "profile.html", context)
 
@@ -213,6 +228,7 @@ def editPro(request):
     
     if current_user.proImage:
         print("It exists!!!")
+        print(current_user.proImage.url)
     else:
         print("It doesn't exists!!!")
 
@@ -225,9 +241,62 @@ def editPro(request):
 
 def updatePro(request):
     current_user = User.objects.get(id=request.session['loginID'])
-    current_user.first_name = request.POST['firstName']
-    current_user.last_name = request.POST['lastName']
-    current_user.desc = request.POST['desc']
-    current_user.proImage = request.POST['proImage']
-    current_user.save()
-    return redirect('/profile')
+    if request.method == "POST":
+        form=ImageForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+            current_user.proPicId = obj.id
+            current_user.save()
+            print("obj id here: ", obj.id)
+            print("proPicId here: ", current_user.proPicId)
+            friends = User.objects.get(id=request.session['loginID']).friend.all()
+            numFriends = User.objects.get(id=request.session['loginID']).friend.count()
+            currentUser = User.objects.get(id=request.session['loginID'])
+            all_post = currentUser.post.all().order_by('-id')
+            All_Posts = Status.objects.all().order_by('-id')
+            all_users = User.objects.all()
+            some_users = []
+            some_posts = []
+            count = 0
+            count2 = 0
+            for user in all_users:
+                if user not in friends and user != currentUser:
+                    if count < 4:
+                        some_users.append({"firstName": user.first_name, "lastName": user.last_name, "userName": user.user_name, "id": user.id})
+                        count+=1
+
+            for post in All_Posts:
+                if post.public == True and post not in all_post:
+                    if count2 < 4:
+                        some_posts.append({"info": post.info, "poster": post.poster})
+                        count2+=1
+                elif post.poster in friends:
+                    if count2 < 4:
+                        some_posts.append({"info": post.info, "poster": post.poster})
+                        count2+=1
+    
+            context = {
+                "user" : User.objects.get(id=request.session['loginID']),
+                "posts" : all_post,
+                "cUser" : currentUser,
+                "friends" : friends,
+                "numFriends": numFriends,
+                "allUsers" : all_users,
+                "someUsers" : some_users,
+                "somePosts" : some_posts
+            }
+            print("obj here: ", obj)
+            return render(request,"profile.html",{"obj":obj}, context)  
+    else:
+        form=ImageForm()    
+        return render(request,"editPro.html",{"form":form})
+
+
+
+    # current_user = User.objects.get(id=request.session['loginID'])
+    # current_user.first_name = request.POST['firstName']
+    # current_user.last_name = request.POST['lastName']
+    # current_user.desc = request.POST['desc']
+    # current_user.save()
+    # return redirect('/profile')

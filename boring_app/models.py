@@ -32,6 +32,7 @@ class UserManager(models.Manager):
         return errors
     def logValidator(self, postData):
         user_filter = User.objects.filter(user_name=postData['user_name'])
+        print("user Filter here: ", user_filter)
         errors = {}
         if len(postData['user_name']) == 0:
             errors['user_name'] = "User name is required!"
@@ -84,8 +85,8 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     friend = models.ManyToManyField('self', through='Relationship', symmetrical=False, related_name="related_to")
-    proImage = models.ImageField(upload_to='profile_image', blank=True)
     desc = models.CharField(max_length=255)
+    proPicId = models.IntegerField(default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -123,9 +124,14 @@ class Relationship(models.Model):
     to_user = models.ForeignKey(User, related_name="to_users", on_delete=models.CASCADE)
     status = models.IntegerField(choices=RELATIONSHIP_STATUSES)
 
+class ProImage(models.Model):
+    image = models.ImageField(upload_to='proImage/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 class Status(models.Model):
     info = models.TextField()
-    poster = models.ForeignKey(User, related_name="post", on_delete=models.CASCADE)
+    poster = models.ForeignKey(User, related_name="post", on_delete=models.CASCADE, null=True)
     mooz = models.ManyToManyField(User, related_name="mooz")
     numMooz = models.IntegerField(0)
     public = models.BooleanField(default=False)
@@ -140,3 +146,8 @@ class Reply(models.Model):
     repliedTo = models.ForeignKey(Status, related_name="replies", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+
+
+
+

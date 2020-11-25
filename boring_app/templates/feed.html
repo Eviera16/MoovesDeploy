@@ -56,20 +56,52 @@
             {% if post.public == False %}
             <div class="feedStream">
                 <div class="User">
-                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
-                    <div class="user">
-                        <a class="link" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
-                    </div>
+                    {% if post.poster.proPicId %}
+                    {% for pic in proImages %}
+                    {% if post.poster.proPicId == pic.id %}
+                    <img class="smallPro" src="{{ pic.image.url }}">
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    {% if 5 > post.poster.user_name|length %}
+                    <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                    {% elif 10 > post.poster.user_name|length %}
+                    <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                    {% elif 15 > post.poster.user_name|length %}
+                    <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                    {% elif post.poster.user_name|length > 20 %}
+                    <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                    {% endif %}
+                    {% endif %}
+                    <a class="link" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
+                    <!-- <div class="user">
+                    </div> -->
                     <div class="hiddenStuff"><input type="hidden" name="postId" value="{{post.id}}"></div>
                 </div>
                 <div class="posts">
                     <p>{{post.info}}</p>
                 </div>
                 <div class="ReplyStream">
-                {% for reply in post.replies.all %}
+                    {% for reply in post.replies.all %}
                     <div class="reply">
                         <div class="User">
-                            <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                            {% if reply.poster.proPicId %}
+                            {% for pic in proImages %}
+                            {% if reply.poster.proPicId == pic.id %}
+                            <img class="smallPro" src="{{ pic.image.url }}">
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            {% if 5 > reply.poster.user_name|length %}
+                            <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                            {% elif 10 > reply.poster.user_name|length %}
+                            <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                            {% elif 15 > reply.poster.user_name|length %}
+                            <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                            {% elif reply.poster.user_name|length > 20 %}
+                            <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                            {% endif %}
+                            {% endif %}
                             <div class="user">
                                 <a class="link" href="/profile/{{reply.poster.id}}">@{{reply.poster.user_name}}</a>
                             </div>
@@ -104,7 +136,7 @@
             </div>
             <div class="upperRe">
                 <div class="UserRe">
-                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    <!-- <img class="smallPro" src="{% static 'img/cowPro.png' %}"> -->
                     <div class="userRe">
                     </div>
                 </div>
@@ -132,7 +164,23 @@
             {% if post.public == True %}
             <div id="feedStream1">
                 <div class="User">
-                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    {% if post.poster.proPicId %}
+                    {% for pic in proImages %}
+                    {% if post.poster.proPicId == pic.id %}
+                    <img class="smallPro" src="{{ pic.image.url }}">
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    {% if 5 > post.poster.user_name|length %}
+                    <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                    {% elif 10 > post.poster.user_name|length %}
+                    <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                    {% elif 15 > post.poster.user_name|length %}
+                    <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                    {% elif post.poster.user_name|length > 20 %}
+                    <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                    {% endif %}
+                    {% endif %}
                     <div class="user1">
                         <a class="link1" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
                     </div>
@@ -146,7 +194,23 @@
             {% if post.poster in user.friend.all %}
             <div id="feedStream2">
                 <div class="User">
-                    <img class="smallPro" src="{% static 'img/cowPro.png' %}">
+                    {% if post.poster.proPicId %}
+                    {% for pic in proImages %}
+                    {% if post.poster.proPicId == pic.id %}
+                    <img class="smallPro" src="{{ pic.image.url }}">
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    {% if 5 > post.poster.user_name|length %}
+                    <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                    {% elif 10 > post.poster.user_name|length %}
+                    <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                    {% elif 15 > post.poster.user_name|length %}
+                    <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                    {% elif post.poster.user_name|length > 20 %}
+                    <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                    {% endif %}
+                    {% endif %}
                     <div class="user2">
                         <a class="link2" href="/profile/{{post.poster.id}}">@{{post.poster.user_name}}</a>
                     </div>
