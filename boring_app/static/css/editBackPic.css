@@ -24,6 +24,43 @@
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     /* font-size: 25px; */
 }
+
+.logout{
+    text-decoration: none;
+    height: fit-content;
+    width: 170px;
+    border-radius: 20px;
+    text-align: center;
+}
+#header{
+    margin-top: 5px;
+    margin-left: 165px;
+    height: 450px;
+    width: 600px;
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* border-right: .5px solid black; */
+}
+.headerH2{
+    height: 50px;
+    width: 595px;
+    /* border-bottom: 1px solid black; */
+    margin-top: -2px;
+    padding-left: 5px;
+}
+.backPicForm{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+}
+.subBackPic{
+    height: fit-content;
+    width: fit-content;
+    margin-left: -62px;
+    margin-top: 38px;
+}
 .homeIcon{
     height: 70px;
     width: 70px;
@@ -40,56 +77,37 @@
     margin-left: 30px;
     /* border: 1px solid black; */
 }
-.smallPro1side{
+.smallPro1{
     height: 70px;
     width: 70px;
     border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
     border: 4px solid violet;
-    margin-top: -30px;
-    margin-left: 30px;
-    /* border: 1px solid black; */
 }
-.smallPro2side{
+.smallPro2{
     height: 70px;
     width: 70px;
     border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
     border: 4px solid crimson;
-    margin-top: -30px;
-    margin-left: 30px;
-    /* border: 1px solid black; */
 }
-.smallPro3side{
+.smallPro3{
     height: 70px;
     width: 70px;
     border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
     border: 4px solid teal;
-    margin-top: -30px;
-    margin-left: 30px;
-    /* border: 1px solid black; */
 }
-.smallPro4side{
+.smallPro4{
     height: 70px;
     width: 70px;
     border-radius: 50px;
-    border: 4px solid darkgreen;
     margin-top: -30px;
     margin-left: 30px;
-    /* border: 1px solid black; */
-}
-
-.logout{
-    text-decoration: none;
-    height: fit-content;
-    width: 170px;
-    border-radius: 20px;
-    text-align: center;
-}
-.profile{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    z-index: 2;
-    margin-top: -50px;
+    border: 4px solid darkgreen;
 }
 .backGround{
     margin-top: -20px;
@@ -102,126 +120,4 @@
     margin-top: -20px;
     height: 175px;
     width: 600px;
-}
-#header{
-    margin-top: 5px;
-    margin-left: 165px;
-    height: 450px;
-    width: 600px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    /* border-right: .5px solid black; */
-}
-#rightSide{
-    height: 568px;
-    width: 504px;
-    /* border-left: .5px solid black; */
-    margin-left: 766px;
-    margin-top: -458px;
-    display: flex;
-    flex-direction: column;
-}
-.editBack{
-    height: 175px;
-    width: 500px;
-    /* border: 1px solid black; */
-    margin-top: 55px;
-}
-.editPro{
-    height: 90px;
-    width: 490px;
-    /* border: 1px solid black; */
-    padding: 5px;
-
-}
-/* .sideProfile */
-.editDesc{
-    height: 200px;
-    width: 480px;
-    /* border: 1px solid black; */
-    padding: 10px;
-}
-.descForm{
-    display: flex;
-    flex-direction: column;
-}
-.desc{
-    /* border-bottom: 1px solid black; */
-    width: 200px;
-}
-.descArea{
-    /* border-bottom: 1px solid black; */
-    width: 200px;
-    height: 70px;
-    resize: none;
-}
-.subDesc{
-    height: fit-content;
-    width: fit-content;
-    text-align: center;
-    cursor: pointer;
-}
-.headerH2{
-    height: 50px;
-    width: 595px;
-    /* border-bottom: 1px solid black; */
-    margin-top: -2px;
-    padding-left: 5px;
-}
-/* .profile */
-.smallPro{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    margin-right: 60px;
-    background-color: white;
-}
-.smallPro1pro{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    margin-right: 60px;
-    margin-top: -55px;
-    z-index: 2;
-    border: 4px solid violet;
-    background-color: violet;
-}
-.smallPro2pro{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    margin-right: 60px;
-    margin-top: -55px;
-    z-index: 2;
-    border: 4px solid crimson;
-    background-color: crimson;
-}
-.smallPro3pro{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    margin-right: 60px;
-    margin-top: -55px;
-    z-index: 2;
-    border: 4px solid teal;
-    background-color: teal;
-}
-.smallPro4pro{
-    height: 100px;
-    width: 100px;
-    border-radius: 60px;
-    margin-right: 60px;
-    margin-top: -55px;
-    z-index: 2;
-    border: 4px solid darkgreen;
-    background-color: darkgreen;
-}
-.self{
-    display: flex;
-    flex-direction: column;
-    margin-right: 230px;
-    height: 170px;
-    width: 300px;
 }

@@ -1,28 +1,235 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/settings/settings.css' %}">
 
-    </head>
-    <body>
-        <div id="sidebar">
-            <a class="sideLinks" href="/feed">Home</a>
-            <a class="sideLinks" href="/profile">Profile</a>
-            <a class="sideLinks" href="/events">Events</a>
-            <a class="sideLinks" href="/settings">Settings</a>
-            <a class="logout" href="/logout">Logout</a>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/settings/settings.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'JavaScript/settings.js' %}"></script>
+
+</head>
+
+<body id="body">
+    <div class="hiddenStuff">
+        {% if fontType == 1 %}
+        <div class="hideFontTypeHere">1</div>
+        {% elif fontType == 2 %}
+        <div class="hideFontTypeHere">2</div>
+        {% elif fontType == 3 %}
+        <div class="hideFontTypeHere">3</div>
+        {% elif fontType == 4 %}
+        <div class="hideFontTypeHere">4</div>
+        {% elif fontType == 5 %}
+        <div class="hideFontTypeHere">5</div>
+        {% elif fontType == 6 %}
+        <div class="hideFontTypeHere">6</div>
+        {% endif %}
+
+        {% if fontSize == 1 %}
+        <div class="fontSizeHere">1</div>
+        {% elif fontSize == 2 %}
+        <div class="fontSizeHere">2</div>
+        {% elif fontSize == 3 %}
+        <div class="fontSizeHere">3</div>
+        {% endif %}
+
+        {% if fontColor == 1 %}
+        <div class="FontColorHere">1</div>
+        {% elif fontColor == 2 %}
+        <div class="FontColorHere">2</div>
+        {% elif fontColor == 3 %}
+        <div class="FontColorHere">3</div>
+        {% elif fontColor == 4 %}
+        <div class="FontColorHere">4</div>
+        {% elif fontColor == 5 %}
+        <div class="FontColorHere">5</div>
+        {% elif fontColor == 6 %}
+        <div class="FontColorHere">6</div>
+        {% elif fontColor == 7 %}
+        <div class="FontColorHere">7</div>
+        {% endif %}
+
+        {% if background == 1 %}
+        <div class="backgroundColor">1</div>
+        {% else %}
+        <div class="backgroundColor">2</div>
+        {% endif %}
+
+        {% if privacy == 1%}
+        <div class="privacyOnOff">1</div>
+        {% else %}
+        <div class="privacyOnOff">2</div>
+        {% endif %}
+
+
+    </div>
+    <div id="sidebar">
+        <a class="sideLinks" href="/feed">
+            {% if background == 1 %}
+            <img class="homeIcon" src="{% static 'img/barnIconBlack.png'%}" alt="barnIcon">
+            {% else %}
+            <img class="homeIcon" src="{% static 'img/barnIconWhite.png'%}" alt="barnIcon">
+            {% endif %}
+        </a>
+        <a class="sideLinks" href="/profile">
+            {% if CUproPic == 3 %}
+            <img class="profile" src="{% static 'img/cowPro.png' %}">
+            {% else %}
+            {% if CUproPic.image %}
+            <img class="profile" src="{{ CUproPic.image.url }}" alt="image">
+            {% else %}
+            {% if 5 > user.user_name|length %}
+            <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+            {% elif 10 > user.user_name|length %}
+            <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+            {% elif 15 > user.user_name|length %}
+            <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+            {% elif user.user_name|length > 20 %}
+            <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+            {% endif %}
+            {% endif %}
+            {% endif %}</a>
+        <a class="sideLinks" href="/messages">Messages</a>
+        <a class="sideLinks" href="/settings">
+            {% if background == 1 %}
+            <img class="homeIcon" src="{% static 'img/settingsIconBlack.png'%}" alt="barnIcon">
+            {% else %}
+            <img class="homeIcon" src="{% static 'img/settingsIconWhite.png'%}" alt="barnIcon">
+            {% endif %}
+        </a>
+        <a class="logout" href="/logout">Logout</a>
+    </div>
+    <div id="options">
+        <h1 class="setHead">Settings</h1>
+        <h2 id="YourAcc" class="setOpts">Your Account</h2>
+        <h2 id="Dis" class="setOpts">Display</h2>
+        <h2 id="Priv" class="setOpts">Privacy</h2>
+    </div>
+    <div id="YourAccount">
+        <h1 class="setHead1">Your Account</h1>
+        <ul class="accountList">
+            <li>
+                <h2 class="accInfo">First Name: {{user.first_name}}</h2>
+            </li>
+            <li>
+                <h2 class="accInfo">Last Name: {{user.last_name}}</h2>
+            </li>
+            <li>
+                <h2 class="accInfo">Email: {{user.email}}</h2>
+            </li>
+            <li>
+                <h2 class="accInfo">User Name: {{user.user_name}}</h2>
+            </li>
+        </ul>
+
+        <h2 class="accInfo">Change Password</h2>
+        {% if confirmPass == False %}
+        <div class="oldPassHere">
+            <form action="passEdit" method="post">
+                {% csrf_token%}
+                <label class="accInfo">Current Password: </label>
+                <input type="hidden" value="{{user.user_name}}" name="user_name">
+                <input name="password" type="password">
+                <input type="submit" value="submit">
+            </form>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li class="errorMessages">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
-        <div id="options">
-            <h1 class="setHead">Settings</h1>
-            <h2 class="editAcc"><a href="/settings"> Your Account</a></h2>
+        {% else %}
+
+        <div class="newPassHere">
+            <form action="/updatePass" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{user.user_name}}" name="user_name">
+
+                <label class="accInfo">New Password</label>
+                <input type="password" name="password">
+
+                <label class="accInfo">Confirm New Password</label>
+                <input type="password" name="confirm">
+
+                <input type="submit" value="submit">
+            </form>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li class="errorMessages">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
-        <div id="accountInfo">
-            <h1 class="setHead1">Your Account</h1>
-            <h2 class="viewAcc"><a href="/viewAcc" >View Account Information</a></h2>
-            <h2 class="viewAcc"><a href="/editPass"> Edit Password</a></h2>
-            <h2 class="viewAcc">Edit Account</h2>
+        {% endif %}
+    </div>
+    <div id="Display">
+        <div class="leftDis">
+
+            <h1 class="setHead1">Display Settings</h1>
+            <h2 class="disTitle">Adjust Font</h2>
+            <div class="fontList">
+                <ul class="fontList1">
+                    <li><a class="ex1" href="/fontType/1">Moooo</a></li>
+                    <li><a class="ex2" href="/fontType/2">Mooo</a></li>
+                    <li><a class="ex3" href="/fontType/3">Moooo</a></li>
+                </ul>
+                <ul class="fontList1">
+                    <li><a class="ex4" href="/fontType/4">Moooo</a></li>
+                    <li><a class="ex5" href="/fontType/5">Moooo</a></li>
+                    <li><a class="ex6" href="/fontType/6">Moooo</a></li>
+                </ul>
+            </div>
+            <h2 class="disTitle">Adjust Font Size</h2>
+            <div class="fontSize">
+                <ul class="fontSizeList">
+                    <li><a class="smallFont" href="/fontSize/1">Small</a></li>
+                    <li><a class="mediumFont" href="/fontSize/2">Medium</a></li>
+                    <li><a class="largeFont" href="/fontSize/3">Large</a></li>
+                </ul>
+            </div>
 
         </div>
-    </body>
+        <div class="rightDis">
+            <h2 class="disTitle">Adjust Font Color</h2>
+            <div class="fontColor">
+                <ul class="fontColorList">
+                    {% if background == 1%}
+                    <li><a class="fontBasic" href="/fontColor/1">Basic</a></li>
+                    {% else %}
+                    <li><a class="fontBasic2" href="/fontColor/1">Basic</a></li>
+                    {% endif %}
+                    <li><a class="fontBlue" href="/fontColor/2">Blue</a></li>
+                    <li><a class="fontRed" href="/fontColor/3">Red</a></li>
+                    <li><a class="fontGreen" href="/fontColor/4">Green</a></li>
+                    <li><a class="fontOrange" href="/fontColor/5">Orange</a></li>
+                    <li><a class="fontPurple" href="/fontColor/6">Purple</a></li>
+                    <li><a class="fontPink" href="/fontColor/7">Pink</a></li>
+                </ul>
+            </div>
+            <h2 class="disTitle">Background</h2>
+            <ul class="backgroundList">
+                <li class="lightModeList"><a class="lightMode" href="/background/1">Light Mode</a></li>
+                <li><a class="darkMode" href="/background/2">Dark Mode</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id=Privacy>
+        <h1 class="setHead1">Privacy Settings</h1>
+
+        <h2 class="privateHead">Private Moos?</h2>
+        <h4 class="privateDesc">This will take away the private option for your Moos making all of your Moos automatically private.(Private Moos do not show up in events)</h4>
+        <ul class="privateList">
+            <li><a class="privateOn" href="/private/1">Private On</a></li>
+            <li><a class="privateOff" href="/private/2">Private Off</a></li>
+        </ul>
+
+
+    </div>
+</body>
+
 </html>
+<!-- <h2 class="viewAcc"><a href="/viewAcc" >View Account Information</a></h2>
+    <h2 class="viewAcc"><a href="/editPass"> Edit Password</a></h2> -->

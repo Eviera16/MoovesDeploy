@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/editBackPic.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'JavaScript/editBackPic.js' %}"></script>
+
+</head>
+
+<body id="body">
+    <div class="hiddenJs">
+        {% if fontType == 1 %}
+        <div class="hideFontTypeHere">1</div>
+        {% elif fontType == 2 %}
+        <div class="hideFontTypeHere">2</div>
+        {% elif fontType == 3 %}
+        <div class="hideFontTypeHere">3</div>
+        {% elif fontType == 4 %}
+        <div class="hideFontTypeHere">4</div>
+        {% elif fontType == 5 %}
+        <div class="hideFontTypeHere">5</div>
+        {% elif fontType == 6 %}
+        <div class="hideFontTypeHere">6</div>
+        {% endif %}
+
+        {% if fontSize == 1 %}
+        <div class="fontSizeHere">1</div>
+        {% elif fontSize == 2 %}
+        <div class="fontSizeHere">2</div>
+        {% elif fontSize == 3 %}
+        <div class="fontSizeHere">3</div>
+        {% endif %}
+
+        {% if fontColor == 1 %}
+        <div class="FontColorHere">1</div>
+        {% elif fontColor == 2 %}
+        <div class="FontColorHere">2</div>
+        {% elif fontColor == 3 %}
+        <div class="FontColorHere">3</div>
+        {% elif fontColor == 4 %}
+        <div class="FontColorHere">4</div>
+        {% elif fontColor == 5 %}
+        <div class="FontColorHere">5</div>
+        {% elif fontColor == 6 %}
+        <div class="FontColorHere">6</div>
+        {% elif fontColor == 7 %}
+        <div class="FontColorHere">7</div>
+        {% endif %}
+
+        {% if background == 1 %}
+        <div class="backgroundColor">1</div>
+        {% else %}
+        <div class="backgroundColor">2</div>
+        {% endif %}
+    </div>
+    <div id="sidebar">
+        <a class="sideLinks" href="/feed">
+            {% if background == 1%}
+            <img class="homeIcon" src="{% static 'img/barnIconBlack.png' %}" alt="barnIcon"></a>
+        {% else %}
+        <img class="homeIcon" src="{% static 'img/barnIconWhite.png' %}" alt="barnIcon"></a>
+        {% endif %}
+        </a>
+        <a class="sideLinks" href="/profile">
+            {% if CUProPic.image %}
+            <img class="sideProfile" src="{{ CUProPic.image.url }}" alt="image">
+            {% else %}
+            {% if 5 > cUser.user_name|length %}
+            <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+            {% elif 10 > cUser.user_name|length %}
+            <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+            {% elif 15 > cUser.user_name|length %}
+            <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+            {% elif cUser.user_name|length > 20 %}
+            <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+            {% endif %}
+            {% endif %}
+        </a>
+        <a class="sideLinks" href="/events">Events</a>
+        <a class="sideLinks" href="/settings">
+            {% if background == 1 %}
+            <img class="homeIcon" src="{% static 'img/settingsIconBlack.png'%}" alt="settingsIcon"></a>
+            {% else %}
+            <img class="homeIcon" src="{% static 'img/settingsIconWhite.png'%}" alt="settingsIcon"></a>
+            {% endif %}
+        </a>
+        <a class="logout" href="/logout">Logout</a>
+    </div>
+    <div id="header">
+        <h2 class="headerH2">{{user.first_name}} {{user.last_name}} <a class="backPage" href="/updatePro">Back</a></h2>
+        <div class="others">
+            <div class="updateBackPic">
+                <form class="backPicForm" action="updateBackPic" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label class="updateImg">Update Background</label>
+                    <div class="imgForm">
+                        {{form.as_p}}
+                    </div>
+
+                    <button class="subBackPic" type="submit">Upload</button>
+                </form>
+            </div>
+            {% if obj1 %}
+            <img class="background" src="{{ obj1.image.url}}" alt="image">
+            {% elif CUbackPic == 3 %}
+            <div class="backGround"></div>
+            {% else %}
+            {% if CUbackPic.image %}
+            <img class="background" src="{{ CUbackPic.image.url }}" alt="image">
+            {% else %}
+            <div class="backGround"></div>
+            {% endif %}
+            {% endif %}
+
+        </div>
+
+    </div>
+</body>
+
+</html>

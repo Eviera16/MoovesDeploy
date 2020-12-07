@@ -1,0 +1,199 @@
+#sidebar{
+    height: 570px;
+    width: 170px;
+    /* border: 2px solid brown; */
+    margin-top: -8px;
+    margin-left: -8px;
+    position: fixed;
+    /* background-color: black; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+.sideLinks{
+    height: 50px;
+    width: 170px;
+    /* border: 1px solid brown; */
+    /* color: brown; */
+    text-align: center;
+    padding-top: 30px;
+    text-decoration: none;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    /* font-size: 25px; */
+}
+.logout{
+    text-decoration: none;
+    height: fit-content;
+    width: 170px;
+    border-radius: 20px;
+    text-align: center;
+}
+#header{
+    margin-top: 5px;
+    margin-left: 165px;
+    height: fit-content;
+    width: 600px;
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* border-right: .5px solid black; */
+}
+.headerH2{
+    height: 50px;
+    width: 595px;
+    /* border-bottom: 1px solid black; */
+    margin-top: -2px;
+    padding-left: 5px;
+}
+.backGround{
+    margin-top: -20px;
+    height: 175px;
+    width: 600px;
+    background-color: blue;
+}
+.others{
+    height: 50px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.tester{
+    background-color: beige;
+    padding: 0px;
+    margin-top: -10px
+}
+.proPicForm{
+    height: 100px;
+    width: 300px;
+    margin-left: -10px;
+    display: flex;
+}
+.updateImg{
+    margin-top: -2px;
+    margin-left: 10px;
+}
+.subProPic{
+    height: fit-content;
+    width: fit-content;
+    margin-top: 30px;
+    margin-left: -70px;
+}
+.proImage{
+    z-index: 2;
+    margin-left: -100px;
+}
+.self{
+    display: flex;
+    flex-direction: column;
+    margin-right: 230px;
+    height: fit-content;
+    width: 300px;
+}
+.desc{
+    /* border-bottom: 1px solid black; */
+    width: 200px;
+}
+.descArea{
+    /* border-bottom: 1px solid black; */
+    width: 200px;
+    height: 70px;
+    resize: none;
+}
+.profile{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    z-index: 2;
+    margin-left: 100px;
+}
+.smallPro{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    margin-left: 100px;
+    background-color: white;
+}
+.smallPro1{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    margin-left: 100px;
+    border: 4px solid violet;
+    background-color: violet;
+}
+.smallPro2{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    margin-left: 100px;
+    margin-top: 10px;
+    border: 4px solid crimson;
+    background-color: crimson;
+}
+.smallPro3{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    margin-left: 100px;
+    border: 4px solid teal;
+    background-color: teal;
+}
+.smallPro4{
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    margin-left: 100px;
+    border: 4px solid darkgreen;
+    background-color: darkgreen;
+}
+.homeIcon{
+    height: 70px;
+    width: 70px;
+    /* border-radius: 50px; */
+    margin-top: -25px;
+    margin-left: 30px;
+    /* border: 1px solid black; */
+}
+.sideProfile{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -25px;
+    margin-left: 30px;
+    /* border: 1px solid black; */
+}
+.smallPro1side{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
+    border: 4px solid violet;
+}
+.smallPro2side{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
+    border: 4px solid crimson;
+}
+.smallPro3side{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
+    border: 4px solid teal;
+}
+.smallPro4side{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -30px;
+    margin-left: 30px;
+    border: 4px solid darkgreen;
+}

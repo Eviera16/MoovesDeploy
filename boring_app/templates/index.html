@@ -6,6 +6,7 @@
 
     </head>
     <body>
+        <h1 id="header">Mooves</h1>
         <div id="wrapper">
             <div id="registration">
                 <h1>Registar</h1>
@@ -38,13 +39,15 @@
                     <button type="submit">Registar!</button>
                 </form>
             </div>
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <div id="errors">
+                {% if messages %}
+                <ul class="errorsList">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
             <div id="login">
                 <h1>Login</h1>
                 <form class="form2" action="login" method="post">
@@ -62,6 +65,28 @@
                 </form>
             </div>
 
+        </div>
+        <div id="desc">
+            <div class="top">
+                <div class="left">
+                    <h3>Currently in production: </h3>
+                    <ul>
+                        <li>Show more tab</li>
+                        <li>Messages</li>
+                        <li>Friends List</li>
+                        <li>Endless reply threads</li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <h3>On the way</h3>
+                    <ul>
+                        <li>Search Bar</li>
+                        <li>GIFs</li>
+                        <li>Private accounts</li>
+                    </ul>
+                </div>
+            </div>
+            <h5>However the site is still useable and all aspects that are currently in production will be added!</h5>
         </div>
     </body>
 </html>

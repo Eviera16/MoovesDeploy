@@ -87,6 +87,12 @@ class User(models.Model):
     friend = models.ManyToManyField('self', through='Relationship', symmetrical=False, related_name="related_to")
     desc = models.CharField(max_length=255)
     proPicId = models.IntegerField(default=None, null=True)
+    backPicId = models.IntegerField(default=None, null=True)
+    fontType = models.IntegerField(default=None, null=True)
+    fontSize = models.IntegerField(default=None, null=True)
+    fontColor = models.IntegerField(default=None, null=True)
+    background = models.IntegerField(default=None, null=True)
+    privacy = models.IntegerField(default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -129,12 +135,23 @@ class ProImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class BackImage(models.Model):
+    image = models.ImageField(upload_to='backImage/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class StatusImage(models.Model):
+    image = models.ImageField(upload_to='statusImage/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 class Status(models.Model):
     info = models.TextField()
     poster = models.ForeignKey(User, related_name="post", on_delete=models.CASCADE, null=True)
     mooz = models.ManyToManyField(User, related_name="mooz")
     numMooz = models.IntegerField(0)
     public = models.BooleanField(default=False)
+    imageId = models.IntegerField(default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -144,6 +161,7 @@ class Reply(models.Model):
     Remooz = models.ManyToManyField(User, related_name="Replymooz")
     numReMooz = models.IntegerField(0)
     repliedTo = models.ForeignKey(Status, related_name="replies", on_delete=models.CASCADE)
+    imageId = models.IntegerField(default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

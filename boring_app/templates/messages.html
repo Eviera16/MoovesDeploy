@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/messages.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'JavaScript/messages.js' %}"></script>
+
+    </head>
+    <body>
+        <div class="hiddenJs">
+            {% if fontType == 1 %}
+            <div class="hideFontTypeHere">1</div>
+            {% elif fontType == 2 %}
+            <div class="hideFontTypeHere">2</div>
+            {% elif fontType == 3 %}
+            <div class="hideFontTypeHere">3</div>
+            {% elif fontType == 4 %}
+            <div class="hideFontTypeHere">4</div>
+            {% elif fontType == 5 %}
+            <div class="hideFontTypeHere">5</div>
+            {% elif fontType == 6 %}
+            <div class="hideFontTypeHere">6</div>
+            {% endif %}
+    
+            {% if fontSize == 1 %}
+            <div class="fontSizeHere">1</div>
+            {% elif fontSize == 2 %}
+            <div class="fontSizeHere">2</div>
+            {% elif fontSize == 3 %}
+            <div class="fontSizeHere">3</div>
+            {% endif %}
+    
+            {% if fontColor == 1 %}
+            <div class="FontColorHere">1</div>
+            {% elif fontColor == 2 %}
+            <div class="FontColorHere">2</div>
+            {% elif fontColor == 3 %}
+            <div class="FontColorHere">3</div>
+            {% elif fontColor == 4 %}
+            <div class="FontColorHere">4</div>
+            {% elif fontColor == 5 %}
+            <div class="FontColorHere">5</div>
+            {% elif fontColor == 6 %}
+            <div class="FontColorHere">6</div>
+            {% elif fontColor == 7 %}
+            <div class="FontColorHere">7</div>
+            {% endif %}
+    
+            {% if background == 1 %}
+            <div class="backgroundColor">1</div>
+            {% else %}
+            <div class="backgroundColor">2</div>
+            {% endif %}
+    
+        </div>
+        <div id="sidebar">
+            <a class="sideLinks" href="/feed">
+                {% if background == 1%}
+                <img class="homeIcon" src="{% static 'img/barnIconBlack.png' %}" alt="barnIcon"></a>
+            {% else %}
+            <img class="homeIcon" src="{% static 'img/barnIconWhite.png' %}" alt="barnIcon"></a>
+            {% endif %}
+            </a>
+            <a class="sideLinks" href="/profile">
+                {% if obj %}
+                <img class="sideProfile" src="{{ obj.image.url}}" alt="image">
+                {% elif CUproPic == 3 %}
+                <img class="sideProfile" src="{% static 'img/cowPro.png' %}">
+                {% else %}
+                {% if CUproPic.image %}
+                <img class="sideProfile" src="{{ CUproPic.image.url }}" alt="image">
+                {% else %}
+                {% if 5 > cUser.user_name|length %}
+                <img class="smallPro1" src="{% static 'img/cowPro.png' %}">
+                {% elif 10 > cUser.user_name|length %}
+                <img class="smallPro2" src="{% static 'img/cowPro.png' %}">
+                {% elif 15 > cUser.user_name|length %}
+                <img class="smallPro3" src="{% static 'img/cowPro.png' %}">
+                {% elif cUser.user_name|length > 20 %}
+                <img class="smallPro4" src="{% static 'img/cowPro.png' %}">
+                {% endif %}
+                {% endif %}
+                {% endif %}
+            </a>
+            <a class="sideLinks" href="/messages">Messages</a>
+            <a class="sideLinks" href="/settings">
+                {% if background == 1 %}
+                <img class="homeIcon" src="{% static 'img/settingsIconBlack.png'%}" alt="settingsIcon"></a>
+                {% else %}
+                <img class="homeIcon" src="{% static 'img/settingsIconWhite.png'%}" alt="settingsIcon"></a>
+                {% endif %}
+            </a>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+
+        <div class="inProduction">
+            <h1>Currently In production, Sorry!</h1>
+        </div>
+    </body>
+</html>

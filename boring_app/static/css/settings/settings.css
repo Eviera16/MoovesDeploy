@@ -4,13 +4,11 @@ body{
 }
 
 #sidebar{
-    height: 570px;
+    height: 580px;
     width: 170px;
-    border: 2px solid brown;
     margin-top: -8px;
     margin-left: -8px;
     position: fixed;
-    background-color: black;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -20,13 +18,10 @@ body{
 .sideLinks{
     height: 50px;
     width: 170px;
-    border: 1px solid brown;
-    color: brown;
     text-align: center;
     padding-top: 30px;
     text-decoration: none;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 #options{
@@ -34,18 +29,18 @@ body{
     flex-direction: column;
     height: 565px;
     width: 445px;
-    border: 1px solid black;
     margin-left: 166px;
     margin-top: -8px;
 }
 
 .setHead{
     height: 50px;
-    width: 445px;
+    width: 450px;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
     margin-top: -5px;
+    margin-bottom: 1px;
+    margin-left: -5px;
 }
 
 .setHead1{
@@ -53,42 +48,242 @@ body{
     width: 651px;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
     margin-top: -5px;
 }
 
-.editAcc{
+.setOpts{
     height: 50px;
-    width: 445px;
+    width: 450px;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
-    margin-top: -5px;
+    margin-top: -1px;
+    margin-bottom: 1px;
+    margin-left: -5px;
+    cursor: pointer;
 }
 
-.viewAcc{
-    height: 50px;
-    width: 651px;
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-    margin-top: -5px;
+.setOpts:hover{
+    background-color: lightgray;
 }
 
-#accountInfo{
+#YourAccount{
     height: 565px;
     width: 700px;
-    border: 1px solid black;
     margin-top: -8px;
 }
+.accInfo{
+    width: fit-content;
+}
+.accountList{
+    list-style-type: none;
+}
+#Display{
+    height: fit-content;
+    width: 700px;
+    margin-top: -8px;
+    display: flex;
+}
+#Privacy{
+    height: 545px;
+    width: 680px;
+    margin-top: -8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.privateDesc{
+    margin-top: -10px;
+    width: 400px;
+    text-align: center;
+}
 
+.disTitle{
+    width: fit-content;
+}
+.fontList1{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.fontSizeList{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.fontColorList{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.backgroundList{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 .logout{
     text-decoration: none;
-    border: 1px solid brown;
-    background-color: black;
-    height: 20px;
+    height: fit-content;
     width: 170px;
     border-radius: 20px;
     text-align: center;
-    color: brown;
+}
+.ex1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.ex2{
+    font-family: cursive;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.ex3{
+    font-family: fantasy;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.ex4{
+    font-family: monospace;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.ex5{
+    font-family: sans-serif;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.ex6{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-size: 30px; */
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.fontList{
+    display: flex;
+
+}
+.smallFont{
+    font-size: 15px;
+    text-decoration: none;
+}
+.mediumFont{
+    font-size: 20px;
+    text-decoration: none;
+}
+.largeFont{
+    font-size: 30px;
+    text-decoration: none;
+}
+.fontBasic{
+    color: black;
+    text-decoration: none;
+}
+.fontBasic2{
+    color: white;
+    text-decoration: none;
+}
+.fontBlue{
+    color: blue;
+    text-decoration: none;
+}
+.fontRed{
+    color: red;
+    text-decoration: none;
+}
+.fontGreen{
+    color: green;
+    text-decoration: none;
+}
+.fontOrange{
+    color: orange;
+    text-decoration: none;
+}
+.fontPurple{
+    color: purple;
+    text-decoration: none;
+}
+.fontPink{
+    color: pink;
+    text-decoration: none;
+}
+.leftDis{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+.rightDis{
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+}
+.lightMode{
+    text-decoration: none;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2px;
+}
+.darkMode{
+    text-decoration: none;
+    background-color: black;
+    border-radius: 20px;
+    padding: 2px;
+}
+.privateList{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+.privateOn{
+    text-decoration: none;
+    border-radius: 20px;
+    margin-right: 5px;
+    padding: 3px;
+}
+/* .privateDesc */
+.privateOff{
+    text-decoration: none;
+    border-radius: 20px;
+    margin-left: 5px;
+    padding: 3px;
+}
+.lightModeList{
+    margin-bottom: 5px;
+}
+.profile{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: -25px;
+    margin-left: 30px;
+    border: 1px solid black;
+}
+.homeIcon{
+    height: 70px;
+    width: 70px;
+    /* border-radius: 50px; */
+    margin-top: -25px;
+    margin-left: 30px;
+    /* border: 1px solid black; */
 }

@@ -14,7 +14,7 @@ urlpatterns = [
     path('add1', views.add1),
     path('follow/<int:id1>/<int:id2>', views.follow),
     path('unfollow/<int:id1>/<int:id2>', views.unfollow),
-    path('events', views.events),
+    path('messages', views.messages1),
     path('event/submit', views.eventSubmit),
     path('like/<int:id>', views.like),
     path('logout', views.logout),
@@ -25,8 +25,15 @@ urlpatterns = [
     path('newPass', views.newPass),
     path('updatePass', views.updatePass),
     path('reply', views.reply),
-    path('editPro', views.editPro),
-    path('updatePro', views.updatePro)
+    path('updatePro', views.updatePro),
+    path('updateProPic', views.updateProPic),
+    path('updateProDesc', views.updateProDesc),
+    path('updateBackPic', views.updateBackPic),
+    path('fontType/<int:num>', views.fontType),
+    path('fontSize/<int:num>', views.fontSize),
+    path('fontColor/<int:num>', views.fontColor),
+    path('background/<int:num>', views.background),
+    path('private/<int:num>', views.privacy)
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
